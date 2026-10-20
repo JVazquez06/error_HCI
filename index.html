@@ -1,10 +1,410 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+
+        <title>Software Shop - Registro</title>
+    <meta name="description" content="RegÃ­strate en Software Shop y disfruta del contenido que tenemos para ti.">
+
+    <meta content="Software Shop" property="og:title">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="google-site-verification" content="HGvty_AnH4EbsT13A6WpjVsDruGqMmSPkYwnEw7B-8I" />
+
+    <script type="text/javascript" src="https://checkout.wompi.co/widget.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).load(function() {
+            $(".loader").fadeOut("slow");
+        })
+    </script>-->
+
+    <!-- Start of  Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=c92f1edc-6be7-436c-aecd-901170c3f575">
+    </script>
+    <!-- End of  Zendesk Widget script -->
+
+    <!-- Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
+
+    <link href="assets/css/bootstrap.css?v=1" rel="stylesheet" type="text/css">
+    <link href="css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="css/webflow.css" rel="stylesheet" type="text/css">
+    <link href="css/software-shop.webflow.css?v=6" rel="stylesheet" type="text/css">
+    <link href="css/autocomplete/jquery-ui-min.css" rel="Stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+
+    <!-- Estilos del video-->
+    <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
+
+    <!-- Iconos Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous">
+
+    <!-- Iconos Iconify -->
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+    <link rel="canonical" href="https://www.software-shop.com/registro" />
+
+    <meta property="og:title" content="Software Shop" />
+    <meta property="og:description"
+        content="Te apoyamos en la implementaciÃ³n de herramientas analÃ­ticas y software especializado para que tu organizaciÃ³n y LatinoamÃ©rica progresen." />
+    <meta property="og:url" content="https://www.software-shop.com/registro" />
+    <meta property="og:type" content="website" />
+
+    <!-- IMAGEN CONTROLADA -->
+    <meta property="og:image" content="images/logo-ss.png" />
+    <meta property="og:image:width" content="518" />
+    <meta property="og:image:height" content="283" />
+
+    <!-- <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+    </style> -->
+
+    <style>
+        /* Mejora HCI - Usabilidad y Accesibilidad:
+           Labels antes de cada input para mantener la visibilidad del campo al escribir */
+        .div-form-asesores .orden-1 {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 6px;
+        }
+
+        .campo-contenedor {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            flex: 1 1 0;
+            margin-right: 20px;
+            margin-bottom: 9px;
+            min-width: 0;
+        }
+
+        .campo-contenedor.full-width {
+            flex: 1 1 100%;
+        }
+
+        .campo-contenedor._30 {
+            flex: 0 0 20%;
+            min-width: 90px;
+        }
+
+        .campo-contenedor._flex-1 {
+            flex: 1 1 0;
+        }
+
+        .label-campo {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444444;
+            margin-bottom: 5px;
+            margin-left: 2px;
+            text-align: left;
+            user-select: none;
+            line-height: 1.3;
+            transition: color 0.2s ease;
+        }
+
+        .label-campo .req {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-left: 3px;
+        }
+
+        .campo-contenedor:focus-within .label-campo {
+            color: #6C3DB8;
+        }
+
+        .campo-contenedor .texto-tarjeta {
+            width: 100% !important;
+            margin-right: 0 !important;
+            margin-bottom: 0 !important;
+            box-sizing: border-box;
+        }
+
+        .label-nav {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        /* =========================================================
+           HCI - Heurística 9 de Jakob Nielsen (2024):
+           Ayudar a los usuarios a reconocer, diagnosticar y recuperarse de errores
+           ========================================================= */
+        .error-mensaje {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: #d63031;
+            margin-top: 5px;
+            margin-left: 2px;
+            line-height: 1.3;
+            text-align: left;
+            animation: aparecerError 0.25s ease-out;
+        }
+
+        .error-mensaje.visible {
+            display: flex;
+        }
+
+        .error-mensaje i {
+            font-size: 13px;
+            flex-shrink: 0;
+            color: #d63031;
+        }
+
+        @keyframes aparecerError {
+            from {
+                opacity: 0;
+                transform: translateY(-4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 1. Reconocer: Resaltado visual claro para identificar el campo con error */
+        .campo-contenedor.tiene-error .texto-tarjeta {
+            border: 1.5px solid #d63031 !important;
+            background-color: #fff6f6 !important;
+            box-shadow: 0 0 0 3px rgba(214, 48, 49, 0.12) !important;
+        }
+
+        .campo-contenedor.tiene-error .label-campo {
+            color: #c0392b !important;
+        }
+
+        /* 2. Recuperarse: Estado válido con feedback positivo tras corregir */
+        .campo-contenedor.es-valido .texto-tarjeta {
+            border: 1.5px solid #27ae60 !important;
+            background-color: #f7fdf9 !important;
+        }
+
+        .campo-contenedor.es-valido .label-campo {
+            color: #27ae60 !important;
+        }
+
+        /* Alerta general accesible y constructiva */
+        .alerta-error-general {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #fff1f0;
+            border: 1px solid #ffa39e;
+            color: #cf1322;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13.5px;
+            font-weight: 600;
+            margin: 14px 20px 10px 0;
+            text-align: center;
+            animation: aparecerError 0.3s ease-out;
+        }
+
+        .alerta-error-general i {
+            font-size: 16px;
+            color: #cf1322;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 767px) {
+            .div-form-asesores .orden-1 {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .campo-contenedor,
+            .campo-contenedor._30,
+            .campo-contenedor._flex-1 {
+                flex: 1 1 100%;
+                width: 100%;
+                margin-right: 0;
+            }
+            .alerta-error-general {
+                margin-right: 0;
+            }
+        }
+    </style>
+
+    <!-- Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LffdwQsAAAAAK6_p97UO1FbhjXUus21Lmeldrfs"></script>
+    <!-- Recaptcha Fin -->
+
+    <!-- Validacion recaptcha SdeC y login-->
+    <script>
+        $(document).ready(function() {
+            $("#confirmacionSdeC").click(function() {
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LffdwQsAAAAAK6_p97UO1FbhjXUus21Lmeldrfs', {
+                        action: 'validarUsuario'
+                    }).then(function(token) {
+                        $("#email-form-sdec").prepend(
+                            '<input type="hidden" name="token" value="' + token + '" >');
+                        $("#email-form-sdec").prepend(
+                            '<input type="hidden" name="action" value="validarTarjeta" >'
+                            );
+                        $("#email-form-sdec").submit();
+                    });
+                });
+            })
+
+            $("#entrarSesion_mov").click(function() {
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LffdwQsAAAAAK6_p97UO1FbhjXUus21Lmeldrfs', {
+                        action: 'validarUsuario'
+                    }).then(function(token) {
+                        $("#form-login").prepend(
+                            '<input type="hidden" name="token" value="' + token + '" >');
+                        $("#form-login").prepend(
+                            '<input type="hidden" name="action" value="validarTarjeta" >'
+                            );
+                        $("#form-login").submit();
+                    });
+                });
+            })
+
+            $("#nav_login_entrar").click(function() {
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LffdwQsAAAAAK6_p97UO1FbhjXUus21Lmeldrfs', {
+                        action: 'validarUsuario'
+                    }).then(function(token) {
+                        $("#form-login1").prepend(
+                            '<input type="hidden" name="token" value="' + token + '" >');
+                        $("#form-login1").prepend(
+                            '<input type="hidden" name="action" value="validarTarjeta" >'
+                            );
+                        $("#form-login1").submit();
+                    });
+                });
+            })
+        })
+    </script>
+
+    <script type="text/javascript">
+        WebFont.load({
+            google: {
+                families: ["Varela Round:400"]
+            }
+        });
+    </script>
+    <script src="js/modernizr.js" type="text/javascript"></script>
+    <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+    <link href="images/256-256.png" rel="apple-touch-icon">
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WRPLM6K');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2330697-10"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-2330697-10');
+    </script>
+    <!-- Google Analytics - Vimeo -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/16978275.js"></script>
+    <!-- End Google Analytics - Vimeo -->
+    <!-- End Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- Begin Inspectlet Embed Code -->
+    <script type="text/javascript" id="inspectletjs">
+        window.__insp = window.__insp || [];
+        __insp.push(['wid', 904700716]);
+        (function() {
+            function ldinsp() {
+                if (typeof window.__inspld != "undefined") return;
+                window.__inspld = 1;
+                var insp = document.createElement('script');
+                insp.type = 'text/javascript';
+                insp.async = true;
+                insp.id = "inspsync";
+                insp.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                    '://cdn.inspectlet.com/inspectlet.js';
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(insp, x);
+            };
+            setTimeout(ldinsp, 500);
+            document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window
+                .addEventListener('load', ldinsp, false)) : ldinsp();
+        })();
+    </script>
+    <!-- End Inspectlet Embed Code -->
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1552975701681662');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1"
+            src="https://www.facebook.com/tr?id=1552975701681662&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
+
 </head>
 
 <body>
@@ -74,7 +474,8 @@
                                 <form name="form-login" class="wf-form-portafolio" id="form-login" method="post"
                                     action="https://www.software-shop.com/login">
                                     <div>
-                                        <input class="texto-buscar" type="text" placeholder="Correo Electronico"
+                                        <label for="email_login_mov" class="label-nav">Correo electr&oacute;nico:</label>
+                                        <input class="texto-buscar" id="email_login_mov" type="text" placeholder="Correo Electronico"
                                             name="email" required>
                                     </div>
                                     <input type="hidden" name="_token" value="Jmuz2x8QoGy5EY4ZgKg4DsU13fLcO7jQp5WZqZp8">
@@ -1339,7 +1740,8 @@
                                         <form name="form-login" class="wf-form-portafolio" method="post"
                                             id="form-login1" action="https://www.software-shop.com/login">
                                             <div>
-                                                <input class="texto-buscar" type="email"
+                                                <label for="email_login_desk" class="label-nav">Correo electr&oacute;nico:</label>
+                                                <input class="texto-buscar" id="email_login_desk" type="email"
                                                     placeholder="Correo Electronico" name="email" required>
                                             </div>
                                             <input type="hidden" name="_token" value="Jmuz2x8QoGy5EY4ZgKg4DsU13fLcO7jQp5WZqZp8">
@@ -1366,7 +1768,7 @@
                     <div class="flex-hijo" data-ix="aparece-izquierda-derecha"><img class="icono_subpagina" src="images/llav.png" width="121">
                     </div>
                     <div class="flex-hijo" data-ix="aparece-derecha-izquierda">
-                        <h1 class="heading-blanco">RegÃ­strate</h1>
+                        <h1 class="heading-blanco">Regí­strate</h1>
                         <div class="text-blanco">en Software Shop y disfruta del<br>contenido que tenemos para ti.</div>
                     </div>
                 </div>
@@ -1378,7 +1780,7 @@
                     <br>
                     
                     <div class="w-form">
-                        <label class="titulo-gris" data-ix="aparece-abajo-a-arriba" for="name">Â¡Registrate Rapidamente!</label>
+                        <label class="titulo-gris" data-ix="aparece-abajo-a-arriba" for="name">¡Regístrate Rapidamente!</label>
                         <form method="POST" action="https://www.software-shop.com/registro" accept-charset="UTF-8" class="wf-form-portafolio" id="form-registro"><input name="_token" type="hidden" value="Jmuz2x8QoGy5EY4ZgKg4DsU13fLcO7jQp5WZqZp8">
                             <div class="div-form-asesores">
                                 <! -- Script Tooltip -->
@@ -1392,19 +1794,39 @@
 <div class="div-form-asesores" data-ix="aparece-arriba-a-abajo">
 
     <div class="orden-1">
-        <select class="texto-tarjeta w-input" data-ix="aparece-abajo-a-arriba" required="required" name="tipo_entidad" style="transition: all, opacity 1000ms, transform 1000ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);"><option selected="selected" value="">Sel. Tipo Entidad</option><option value="1">Académica</option><option value="2">Corporativa</option><option value="8">Distribuidor (Reseller)</option><option value="5">Estudiante</option><option value="6">Gobierno</option><option value="4">Otros</option><option value="7">Personal</option></select>
-        <input class="texto-tarjeta w-input" data-ix="aparece-abajo-a-arriba" id="entidad" placeholder="Entidad / Empresa" required="required" name="entidad" type="text" value="Ucol" style="transition: all, opacity 1000ms, transform 1000ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);">
+        <div class="campo-contenedor" data-ix="aparece-abajo-a-arriba">
+            <label for="tipo_entidad" class="label-campo">Tipo de entidad <span class="req" title="Campo obligatorio">*</span></label>
+            <select class="texto-tarjeta w-input" id="tipo_entidad" required="required" name="tipo_entidad" aria-describedby="error-tipo_entidad"><option selected="selected" value="">Sel. Tipo Entidad</option><option value="1">Acad&eacute;mica</option><option value="2">Corporativa</option><option value="8">Distribuidor (Reseller)</option><option value="5">Estudiante</option><option value="6">Gobierno</option><option value="4">Otros</option><option value="7">Personal</option></select>
+            <span class="error-mensaje" id="error-tipo_entidad" role="alert"></span>
+        </div>
+        <div class="campo-contenedor" data-ix="aparece-abajo-a-arriba">
+            <label for="entidad" class="label-campo">Entidad / Empresa <span class="req" title="Campo obligatorio">*</span></label>
+            <input class="texto-tarjeta w-input" id="entidad" placeholder="Entidad / Empresa" required="required" name="entidad" type="text" aria-describedby="error-entidad">
+            <span class="error-mensaje" id="error-entidad" role="alert"></span>
+        </div>
     </div>
 
     <div class="orden-1">
         <!-- <input type="text" class="texto-tarjeta w-input" data-ix="aparece-abajo-a-arriba" placeholder="Nombre / Nome" required> -->
-        <input class="texto-tarjeta w-input" data-ix="aparece-abajo-a-arriba" id="nombre" placeholder="Nombre / Nome" required="required" name="nombre" type="text" value="José Manuel" style="transition: all, opacity 1000ms, transform 1000ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);">
-        <input class="texto-tarjeta w-input" data-ix="aparece-abajo-a-arriba" id="apellido" placeholder="Apellido / Sobrenome" required="required" name="apellido" type="text" value="Vázquez Orozco" style="transition: all, opacity 1000ms, transform 1000ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);">
+        <div class="campo-contenedor" data-ix="aparece-abajo-a-arriba">
+            <label for="nombre" class="label-campo">Nombre <span class="req" title="Campo obligatorio">*</span></label>
+            <input class="texto-tarjeta w-input" id="nombre" placeholder="Nombre / Nome" required="required" name="nombre" type="text" aria-describedby="error-nombre">
+            <span class="error-mensaje" id="error-nombre" role="alert"></span>
+        </div>
+        <div class="campo-contenedor" data-ix="aparece-abajo-a-arriba">
+            <label for="apellido" class="label-campo">Apellido <span class="req" title="Campo obligatorio">*</span></label>
+            <input class="texto-tarjeta w-input" id="apellido" placeholder="Apellido / Sobrenombre" required="required" name="apellido" type="text" aria-describedby="error-apellido">
+            <span class="error-mensaje" id="error-apellido" role="alert"></span>
+        </div>
     </div>
 
     <div class="orden-1">
-        <input id="ciudad" class="texto-tarjeta w-input ciudad_nombre" data-ix="aparece-abajo-a-arriba" maxlength="5" data-toggle="tooltip" title="" placeholder="Ciudad / Cidade" required="required" name="ciudad" type="text" value="Colima (Colima, México)" style="transition: all, opacity 1000ms, transform 1000ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);" data-original-title="Busca tu ciudad en la lista desplegada">
-        <input id="ciudadID" class="texto-tarjeta w-input ciudad_ID" placeholder="Ciudad" required="required" name="ciudadID" type="hidden" value="103570">
+        <div class="campo-contenedor full-width" data-ix="aparece-abajo-a-arriba">
+            <label for="ciudad" class="label-campo">Ciudad <span class="req" title="Campo obligatorio">*</span></label>
+            <input id="ciudad" class="texto-tarjeta w-input ciudad_nombre" maxlength="100" data-toggle="tooltip" title="Busca tu ciudad en la lista desplegada" placeholder="Ciudad" required="required" name="ciudad" type="text" aria-describedby="error-ciudad">
+            <input id="ciudadID" class="texto-tarjeta w-input ciudad_ID" placeholder="Ciudad" required="required" name="ciudadID" type="hidden">
+            <span class="error-mensaje" id="error-ciudad" role="alert"></span>
+        </div>
     </div>
 
     <div class="orden-1">
@@ -1412,17 +1834,36 @@
     </div>
 
     <div class="orden-1">
-        <input class="_30 texto-tarjeta w-input ciudad_indicativo" data-ix="aparece-abajo-a-arriba" readonly="" placeholder="Indicativo" name="indicativo" type="text" value="+52(312)" style="transition: all, opacity 1000ms, transform 1000ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);">
-        <input class="texto-tarjeta w-input" id="celular" data-ix="aparece-abajo-a-arriba" placeholder="Teléfono / Celular / Fone" name="telef_oficina" type="text" value="2166216233" style="transition: all, opacity 1000ms, transform 1000ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);">
-        <input class="_30 texto-tarjeta w-input" data-ix="aparece-abajo-a-arriba" placeholder="Ext./Anexo/Extensão" name="ext" type="text" value="amnskanmks" style="transition: all, opacity 1000ms, transform 1000ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);">
+        <div class="campo-contenedor _30" data-ix="aparece-abajo-a-arriba">
+            <label for="indicativo" class="label-campo">Indicativo</label>
+            <input id="indicativo" class="_30 texto-tarjeta w-input ciudad_indicativo" readonly placeholder="Indicativo" name="indicativo" type="text" aria-describedby="error-indicativo">
+            <span class="error-mensaje" id="error-indicativo" role="alert"></span>
+        </div>
+        <div class="campo-contenedor _flex-1" data-ix="aparece-abajo-a-arriba">
+            <label for="celular" class="label-campo">Tel&eacute;fono / Celular <span class="req" title="Campo obligatorio">*</span></label>
+            <input class="texto-tarjeta w-input" id="celular" placeholder="Tel&eacute;fono / Celular" name="telef_oficina" type="number" aria-describedby="error-celular">
+            <span class="error-mensaje" id="error-celular" role="alert"></span>
+        </div>
+        <div class="campo-contenedor _30" data-ix="aparece-abajo-a-arriba">
+            <label for="ext" class="label-campo">Ext. / Anexo</label>
+            <input id="ext" class="_30 texto-tarjeta w-input" placeholder="Ext./Anexo" name="ext" type="text" aria-describedby="error-ext">
+            <span class="error-mensaje" id="error-ext" role="alert"></span>
+        </div>
     </div>
 
     <div class="orden-1">
-                    <input class="texto-tarjeta w-input" data-ix="aparece-abajo-a-arriba" placeholder="E-mail" required="required" name="e_mail" type="text">
-            </div>
-    <label style="display:none" id="error" for="Empresa-institucion-2">Se deben completar todos los campos del formulario</label>
+        <div class="campo-contenedor full-width" data-ix="aparece-abajo-a-arriba">
+            <label for="e_mail" class="label-campo">Correo electr&oacute;nico / E-mail <span class="req" title="Campo obligatorio">*</span></label>
+            <input id="e_mail" class="texto-tarjeta w-input" placeholder="E-mail" required="required" name="e_mail" type="email" aria-describedby="error-e_mail">
+            <span class="error-mensaje" id="error-e_mail" role="alert"></span>
+        </div>
+    </div>
+    <div id="error" class="alerta-error-general" style="display:none;" role="alert">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="error-texto-general">Por favor, revisa y corrige los campos marcados en rojo antes de continuar.</span>
+    </div>
     <div class="orden-check">
-        <label class="morado" for="Empresa-institucion-2">Â¿Deseas recibir correos con informaciÃ³n de los productos del portafolio de tu interÃ©s?</label>
+        <label class="morado" for="Empresa-institucion-2">¿Deseas recibir correos con información de los productos del portafolio de tu interés?</label>
         <div class="columna orden-seleccion">
             <div class="w-radio">
                 <input class="w-radio-input" insp-form-input-id="si_gracias" data-name="Si, Gracias" id="Si, Gracias" name="emailMarketing" type="radio" value="0" checked>
@@ -1441,7 +1882,7 @@
                     </div>
 
                     <div class="div-form-asesores centro margin-t-20 margin-b-50" data-ix="aparece-arriba-a-abajo" style="opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px); transition: opacity 1000ms, transform 1000ms;">
-                        <a class="font-habeas" href="https://www.software-shop.com/contactos/general-data-policy" target="_blank" style=" font-size:14px; font-weight: bold; padding: 3px 10px; border: #cdcdcd 1px solid; border-radius: 10px; background-color: #f9f9f9; box-shadow: 5px 10px 8px #f9f9f9;"><span class="color-black">Conozca nuestras polÃ­ticas de tratamiento de datos</span> aquÃ­</a>
+                        <a class="font-habeas" href="https://www.software-shop.com/contactos/general-data-policy" target="_blank" style=" font-size:14px; font-weight: bold; padding: 3px 10px; border: #cdcdcd 1px solid; border-radius: 10px; background-color: #f9f9f9; box-shadow: 5px 10px 8px #f9f9f9;"><span class="color-black">Conozca nuestras polí­ticas de tratamiento de datos</span> aquí­</a>
                     </div>
 
                 </div>
@@ -1511,9 +1952,12 @@
                             <input class="relleno w-input" data-name="Email" id="Email-2" maxlength="256"
                                 name="Email" required="required" type="email">
                         </div>
-                        <textarea class="comentario w-input" data-ix="aparece-abajo-a-arriba" data-name="&iquest;Qu&eacute; solicitas?"
-                            id="Qu-solicitas" maxlength="5000" name="Qu-solicitas" placeholder="&iquest;Qu&eacute; solicitas?"
-                            required="required"></textarea>
+                        <div class="orden-form-fabricantes" data-ix="aparece-abajo-a-arriba">
+                            <label class="titulo-form" for="Qu-solicitas">&iquest;Qu&eacute; solicitas?:</label>
+                            <textarea class="comentario w-input" data-name="&iquest;Qu&eacute; solicitas?"
+                                id="Qu-solicitas" maxlength="5000" name="Qu-solicitas" placeholder="&iquest;Qu&eacute; solicitas?"
+                                required="required"></textarea>
+                        </div>
                         <div class="boton-enviar">
                             <input id="enviar_Solicitud_Lightbox" class="boton-enviar w-button"
                                 data-ix="aparece-abajo-a-arriba" data-wait="Por favor espera..." type="submit"
@@ -1540,10 +1984,10 @@
 
 <div class="pe pe-c" data-pe-root>
     <button type="button" id="desplegable_ProximosEventos" class="pe-tab pe-tab--realce" data-pe-open
-        aria-controls="pe-panel" aria-expanded="false" aria-label="AgÃ©ndate: ver prÃ³ximos eventos">
+        aria-controls="pe-panel" aria-expanded="false" aria-label="Agéndate: ver próximos eventos">
     <span class="pe-tab__brillo" aria-hidden="true"></span>
     <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
-    <span class="pe-tab__txt">AgÃ©ndate</span>
+    <span class="pe-tab__txt">Agéndate</span>
 </button>
     
     
@@ -1784,7 +2228,8 @@
                             </div>
                             <input type="hidden" id="cotizar_productos" name="productosCotizacion">
                             <div class="orden-form-fabricantes" data-ix="aparece-abajo-a-arriba">
-                                <textarea class="relleno w-input" placeholder="Deseas dejar un comentario?" name="comentarioSolicitud"></textarea>
+                                <label class="titulo-form" for="comentarioSolicitud">Comentario:</label>
+                                <textarea id="comentarioSolicitud" class="relleno w-input" placeholder="Deseas dejar un comentario?" name="comentarioSolicitud"></textarea>
                             </div>
                             <button id="confirmacionSdeC" class="boton-enviar w-button"
                                 data-ix="aparece-abajo-a-arriba" data-wait="Por favor espera..." type="button"
@@ -1814,33 +2259,7 @@
     
     <script src="js/ciudades/ciudades_form_contacto.js"></script>
 
-    <script>
-       $(document).ready(function() {
-            $("#boton-formulario-registro").click(function(){
-                let entidad = document.querySelector('#entidad').value;
-                let nombre = document.querySelector('#nombre').value;
-                let apellido = document.querySelector('#apellido').value;
-                let ciudad = document.querySelector('#ciudad').value;
-                let celular = document.querySelector('#celular').value;
 
-                let error = document.querySelector('#error');
-
-                if(entidad == '' || nombre == '' || apellido == '' || ciudad == '' || celular == ''){
-                    return error.style.display = 'block';
-                }
-                error.style.display = 'none';
-               
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('6LffdwQsAAAAAK6_p97UO1FbhjXUus21Lmeldrfs', {action: 'validarUsuario'}).then(function(token) {
-                        $("#form-registro").prepend('<input type="hidden" name="token" value="'+ token +'" >');
-                        $("#form-registro").prepend('<input type="hidden" name="action" value="validarTarjeta" >');
-                        $("#form-registro").submit();
-                    });
-                });
-                
-            })
-        })       
-    </script>    
 
 
 
@@ -1884,8 +2303,7 @@
     </script>
 
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"2b9bf1b776b14b34bc8ca3d772d73ca1","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script src="script.js"></script>`n</body>
+<script src="script.js"></script>
+</body>
 
 </html>
-
-

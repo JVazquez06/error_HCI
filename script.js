@@ -80,65 +80,250 @@ $(document).ready(function() {
         $(".lightbox-confirma").fadeOut(200);
     });
 
-    // 6. Manejador de validación y envío del formulario de registro
+    // =========================================================================
+    // 6. Validación de Formulario - Heurística 9 de Jakob Nielsen (2024):
+    // "Help users recognize, diagnose, and recover from errors"
+    // =========================================================================
+
+    // Reglas de diagnóstico y sugerencias constructivas de recuperación por campo
+    var reglasValidacion = {
+        tipo_entidad: function(valor) {
+            if (!valor || valor === "") {
+                return "Por favor, selecciona un tipo de entidad (ej. Académica, Corporativa).";
+            }
+            return null;
+        },
+        entidad: function(valor) {
+            if (!valor) {
+                return "Por favor, ingresa el nombre de tu entidad o empresa.";
+            }
+            if (valor.length < 2) {
+                return "El nombre de la entidad debe tener al menos 2 caracteres.";
+            }
+            return null;
+        },
+        nombre: function(valor) {
+            if (!valor) {
+                return "Por favor, ingresa tu nombre.";
+            }
+            if (valor.length < 2) {
+                return "El nombre debe tener al menos 2 letras.";
+            }
+            var regexLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s'-]+$/;
+            if (!regexLetras.test(valor)) {
+                return "El nombre solo debe contener letras (sin números ni caracteres especiales).";
+            }
+            return null;
+        },
+        apellido: function(valor) {
+            if (!valor) {
+                return "Por favor, ingresa tu apellido.";
+            }
+            if (valor.length < 2) {
+                return "El apellido debe tener al menos 2 letras.";
+            }
+            var regexLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s'-]+$/;
+            if (!regexLetras.test(valor)) {
+                return "El apellido solo debe contener letras (sin números ni caracteres especiales).";
+            }
+            return null;
+        },
+        ciudad: function(valor) {
+            if (!valor) {
+                return "Por favor, ingresa tu ciudad de residencia.";
+            }
+            var ciudadID = $('#ciudadID').val();
+            var coincide = listaCiudades.some(function(item) {
+                return item.value.toLowerCase() === valor.toLowerCase() || item.nombre.toLowerCase() === valor.toLowerCase();
+            });
+            if (!ciudadID && !coincide && valor.length > 0) {
+                return "Por favor, selecciona una ciudad de la lista sugerida para vincular tu indicativo.";
+            }
+            return null;
+        },
+        celular: function(valor) {
+            if (!valor) {
+                return "Por favor, ingresa un número de teléfono o celular de contacto.";
+            }
+            if (/[a-zA-Z]/.test(valor)) {
+                return "El teléfono no debe contener letras. Ingresa solo números.";
+            }
+            var digitos = valor.replace(/\D/g, '');
+            if (digitos.length < 7 || digitos.length > 15) {
+                return "Ingresa un número telefónico válido (entre 7 y 15 dígitos numéricos).";
+            }
+            return null;
+        },
+        ext: function(valor) {
+            if (valor && !/^\d{1,6}$/.test(valor)) {
+                return "La extensión debe contener solo números (ejemplo: 104).";
+            }
+            return null;
+        },
+        e_mail: function(valor) {
+            if (!valor) {
+                return "Por favor, ingresa tu correo electrónico.";
+            }
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+            if (!emailRegex.test(valor)) {
+                if (valor.indexOf('@') === -1) {
+                    return "Falta el símbolo '@' en tu correo (ejemplo: usuario@empresa.com).";
+                }
+                var partes = valor.split('@');
+                if (!partes[1] || partes[1].indexOf('.') === -1) {
+                    return "Falta el dominio después del '@' (ejemplo: usuario@empresa.com).";
+                }
+                return "Ingresa un correo electrónico con formato válido (ejemplo: nombre@dominio.com).";
+            }
+            return null;
+        }
+    };
+
+    // 1. RECONOCER Y DIAGNOSTICAR: Resalta visualmente el campo y muestra el mensaje explicativo
+    function mostrarErrorCampo(campoId, mensaje) {
+        var input = $('#' + campoId);
+        var contenedor = input.closest('.campo-contenedor');
+        var errorSpan = $('#error-' + campoId);
+
+        contenedor.removeClass('es-valido').addClass('tiene-error');
+        input.attr('aria-invalid', 'true');
+        errorSpan.html('<i class="fa-solid fa-circle-exclamation"></i> ' + mensaje).addClass('visible');
+    }
+
+    // 2. RECUPERARSE: Limpia el error y muestra confirmación visual de validez
+    function limpiarErrorCampo(campoId) {
+        var input = $('#' + campoId);
+        var contenedor = input.closest('.campo-contenedor');
+        var errorSpan = $('#error-' + campoId);
+
+        contenedor.removeClass('tiene-error');
+        input.removeAttr('aria-invalid');
+        errorSpan.text('').removeClass('visible');
+
+        var valor = input.val() ? input.val().trim() : '';
+        if (valor && reglasValidacion[campoId] && !reglasValidacion[campoId](valor)) {
+            contenedor.addClass('es-valido');
+        } else {
+            contenedor.removeClass('es-valido');
+        }
+    }
+
+    // Validación individual de un campo
+    function validarCampo(campoId, mostrarInmediato) {
+        var input = $('#' + campoId);
+        if (!input.length) return true;
+
+        var valor = input.val() ? input.val().trim() : '';
+        var validador = reglasValidacion[campoId];
+
+        if (validador) {
+            var error = validador(valor);
+            if (error) {
+                if (mostrarInmediato) {
+                    mostrarErrorCampo(campoId, error);
+                }
+                return false;
+            } else {
+                limpiarErrorCampo(campoId);
+                return true;
+            }
+        }
+        return true;
+    }
+
+    // 3. RECUPERACIÓN EN TIEMPO REAL: Los errores se corrigen en cuanto el usuario escribe
+    var camposAValidar = ['tipo_entidad', 'entidad', 'nombre', 'apellido', 'ciudad', 'celular', 'ext', 'e_mail'];
+
+    camposAValidar.forEach(function(campoId) {
+        var selector = '#' + campoId;
+
+        // Validar al perder el foco (blur)
+        $(selector).on('blur', function() {
+            var valor = $(this).val() ? $(this).val().trim() : '';
+            if (valor !== '' || $(this).prop('required')) {
+                validarCampo(campoId, true);
+            }
+        });
+
+        // Al editar (input/change): si tiene error, validar inmediatamente para retirar el error en cuanto sea válido
+        $(selector).on('input change', function() {
+            var contenedor = $(this).closest('.campo-contenedor');
+            if (contenedor.hasClass('tiene-error') || contenedor.hasClass('es-valido')) {
+                validarCampo(campoId, true);
+            }
+            if ($('.campo-contenedor.tiene-error').length === 0) {
+                $('#error').slideUp(200);
+            }
+        });
+    });
+
+    // Limpiar error de ciudad al seleccionar autocompletado
+    $(".ciudad_nombre").on("autocompleteselect", function(event, ui) {
+        setTimeout(function() {
+            limpiarErrorCampo('ciudad');
+        }, 50);
+    });
+
+    function mostrarExito() {
+        var exitoHtml = '<div id="mensaje-exito" style="background:#e8f8f0; border:1px solid #27ae60; color:#27ae60; padding:18px 24px; border-radius:8px; text-align:center; font-weight:bold; font-size:16px; margin:20px 0;">' +
+                        '<i class="fa-solid fa-circle-check" style="font-size:24px; display:block; margin-bottom:8px;"></i>' +
+                        '¡Registro exitoso! Gracias por registrarte en Software Shop. Hemos recibido tu información correctamente.' +
+                        '</div>';
+        $('#form-registro').slideUp(300, function() {
+            $('.w-form').append(exitoHtml);
+        });
+    }
+
+    // Envío del formulario con diagnóstico y enfoque en el primer error
     $("#boton-formulario-registro").on("click", function(e) {
         e.preventDefault();
 
-        var entidad = $('#entidad').val() ? $('#entidad').val().trim() : '';
-        var nombre = $('#nombre').val() ? $('#nombre').val().trim() : '';
-        var apellido = $('#apellido').val() ? $('#apellido').val().trim() : '';
-        var ciudad = $('#ciudad').val() ? $('#ciudad').val().trim() : '';
-        var celular = $('#celular').val() ? $('#celular').val().trim() : '';
-        var errorLabel = $('#error');
+        var esFormularioValido = true;
+        var primerCampoInvalido = null;
 
-        if (!entidad || !nombre || !apellido || !ciudad || !celular) {
-            errorLabel.css({
-                "display": "block",
-                "color": "#e74c3c",
-                "background": "#fdf0ed",
-                "border": "1px solid #fab8b1",
-                "padding": "10px 14px",
-                "border-radius": "6px",
-                "font-weight": "bold",
-                "margin": "12px 0",
-                "text-align": "center"
-            });
-            errorLabel.text("Se deben completar todos los campos del formulario");
-            $('html, body').animate({
-                scrollTop: errorLabel.offset().top - 120
-            }, 300);
+        camposAValidar.forEach(function(campoId) {
+            var esValido = validarCampo(campoId, true);
+            if (!esValido) {
+                esFormularioValido = false;
+                if (!primerCampoInvalido) {
+                    primerCampoInvalido = $('#' + campoId);
+                }
+            }
+        });
+
+        var errorAlert = $('#error');
+        var errorTextoGeneral = $('#error-texto-general');
+
+        if (!esFormularioValido) {
+            errorTextoGeneral.text("Por favor, revisa y corrige los campos marcados en rojo antes de continuar.");
+            errorAlert.slideDown(250);
+
+            // Guiar al usuario desplazando y enfocando el primer campo con error
+            if (primerCampoInvalido && primerCampoInvalido.length) {
+                $('html, body').animate({
+                    scrollTop: primerCampoInvalido.offset().top - 140
+                }, 300, function() {
+                    primerCampoInvalido.focus();
+                });
+            }
             return;
         }
 
-        errorLabel.hide();
+        errorAlert.slideUp(200);
 
-        // Si reCAPTCHA está disponible y en dominio válido, se ejecuta, si no, simula envío exitoso
-        var executeRecaptcha = function() {
-            if (typeof grecaptcha !== 'undefined' && grecaptcha.execute) {
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('6LffdwQsAAAAAK6_p97UO1FbhjXUus21Lmeldrfs', { action: 'validarUsuario' })
-                        .then(function(token) {
-                            mostrarExito();
-                        })
-                        .catch(function() {
-                            mostrarExito();
-                        });
-                });
-            } else {
-                mostrarExito();
-            }
-        };
-
-        function mostrarExito() {
-            var exitoHtml = '<div id="mensaje-exito" style="background:#e8f8f0; border:1px solid #27ae60; color:#27ae60; padding:18px 24px; border-radius:8px; text-align:center; font-weight:bold; font-size:16px; margin:20px 0;">' +
-                            '¡Registro exitoso! Gracias por registrarte en Software Shop.' +
-                            '</div>';
-            $('#form-registro').slideUp(300, function() {
-                $('.w-form').append(exitoHtml);
+        if (typeof grecaptcha !== 'undefined' && grecaptcha.execute) {
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LffdwQsAAAAAK6_p97UO1FbhjXUus21Lmeldrfs', { action: 'validarUsuario' })
+                    .then(function(token) {
+                        mostrarExito();
+                    })
+                    .catch(function() {
+                        mostrarExito();
+                    });
             });
+        } else {
+            mostrarExito();
         }
-
-        executeRecaptcha();
     });
 
     // 7. Toggle menú responsive (mobile)
